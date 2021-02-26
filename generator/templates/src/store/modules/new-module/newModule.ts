@@ -1,6 +1,6 @@
-import actions from './newActions';
-import getters from './newGetters';
-import mutations from './newMutations';
+import actions from './<%- nomeModuloLowerCase %>Actions';
+import getters from './<%- nomeModuloLowerCase %>Getters';
+import mutations from './<%- nomeModuloLowerCase %>Mutations';
 
 export const <%- module %>_MODULE = '<%- module %>_MODULE';
 
