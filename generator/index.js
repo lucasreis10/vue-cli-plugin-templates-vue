@@ -17,8 +17,12 @@ module.exports = function(api, options) {
 
 
   api.onCreateComplete(() => {
+
+    // Renomear pasta para name module escolhido no prompt 
+    fs.renameSync('src/store/modules/new-module', `src/store/modules/${nomeModuloLowerCase}`);
+
     // Renomear arquivos para name module escolhido no prompt 
-    const pathParaRenomearArquivos = 'src/store/modules/new-module';
+    const pathParaRenomearArquivos = `src/store/modules/${nomeModuloLowerCase}`;
     const files = [
       {
         nomeArquivoAtual: `${pathParaRenomearArquivos}/newActions.ts`,
@@ -46,15 +50,13 @@ module.exports = function(api, options) {
 
 
     // Adicionar referencia do novo modulo em store
-    fs.readFile(pathFileStore, 'utf-8', (err, data) => {
-      if (err) throw err;
+    // fs.readFile(pathFileStore, 'utf-8', (err, data) => {
+    //   if (err) throw err;
 
-      const importNovoModulo = data.replace('/{(.*?)},/g', `[${nomeModuloUpperCase}_MODULE]: ${nomeModuloLowerCase}Module,`);
-      
-      fs.writeFile(pathFileStore, importNovoModulo, 'utf-8', function(err) {
-        if (err) throw err;
-      })
-    })
+    //   fs.writeFile(pathFileStore, importNovoModulo, 'utf-8', function(err) {
+    //     if (err) throw err;
+    //   })
+    // })
   }) 
 }
 

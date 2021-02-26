@@ -9,6 +9,7 @@
   "author": "Gwendolyn Faraday <gwenfaraday@pm.me> (https://gwenfaraday.com/)",
   "license": "MIT",
   "dependencies": {
-    "fs-extra": "^9.1.0"
+    "fs-extra": "^9.1.0",
+    "yaml-front-matter": "^4.1.1"
   }
 }
