@@ -15,29 +15,18 @@ module.exports = function(api, options) {
   // Adicionar import de novo store em aquivo store.ts
   api.injectImports(pathFileStore, `import ${nomeModuloLowerCase}Module, { ${nomeModuloUpperCase}_MODULE } from '@/store/modules/${nomeModuloLowerCase}/${nomeModuloLowerCase}Module';`);
 
-
-  api.afterInvoke(() => {
-    const fs = require('fs')
-    const contentMain = fs.readFileSync(pathFileStore, 'utf-8').toString();
-    const lines = contentMain.split(/\r?\n/g)
-
-    const renderIndex = lines.findIndex(line => line.match(/modules:/))
-    lines[renderIndex] += `\n  router,`
-  })
-
-
   // Adicionar novo module store em arquivo store.ts
   api.afterInvoke(() => {
     const spaces = 4;
     const storeFile = api.resolve(pathFileStore);
     const contentMain = fs.readFileSync(storeFile, { encoding: 'utf-8' })
     const lines = contentMain.split(/\r?\n/g)
- 
+
     const moduleIndex = lines.findIndex(line => line.match(/modules\:/))
-    
+
     let found = false;
     let index = moduleIndex;
- 
+
     while(!found){
       let modulo = lines[index+1];
       if(modulo.indexOf('}') !== -1) {
@@ -46,19 +35,19 @@ module.exports = function(api, options) {
       }
       index++;
     }
-    
+
     const tabsAndSpaces = `${new Array(tabs).fill('\t').join('')}${new Array(spaces).fill(' ').join('')}`;
 
-    lines.splice(index, 0, `${tabsAndSpaces}[${nomeModuloUpperCase}_MODULE]: ${nomeModuloLowerCase}Module,`); 
+    lines.splice(index, 0, `${tabsAndSpaces}[${nomeModuloUpperCase}_MODULE]: ${nomeModuloLowerCase}Module,`);
     fs.writeFileSync(api.resolve(storeFile), lines.join(EOL), { encoding: 'utf-8' })
   })
 
   api.onCreateComplete(() => {
 
-    // Renomear pasta para name module escolhido no prompt 
+    // Renomear pasta para name module escolhido no prompt
     fs.renameSync('src/store/modules/new-module', `src/store/modules/${nomeModuloLowerCase}`);
 
-    // Renomear arquivos para name module escolhido no prompt 
+    // Renomear arquivos para name module escolhido no prompt
     const pathParaRenomearArquivos = `src/store/modules/${nomeModuloLowerCase}`;
     const files = [
       {
@@ -84,7 +73,7 @@ module.exports = function(api, options) {
         if ( err ) console.log('ERROR: ' + err);
       });
     })
-  }) 
+  })
 }
 
 
@@ -92,4 +81,4 @@ module.exports = function(api, options) {
 
 
 
-  
+
