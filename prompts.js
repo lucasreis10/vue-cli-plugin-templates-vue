@@ -11,6 +11,6 @@ module.exports = [
     type: 'input',
     message: 'Digite o caminho para o arquivo store.ts ou deixe o padrao',
     validade: input => !!input,
-    default: 'ui/src/store/store.ts'
+    default: 'src/store/store.ts'
   },
 ]
