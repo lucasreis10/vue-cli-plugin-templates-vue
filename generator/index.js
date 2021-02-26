@@ -8,38 +8,38 @@ module.exports = function(api, options) {
   // Renderizar template store
   api.render('./templates', { module });
 
+
   // Adicionar import de novo store em aquivo store.ts
   const nomeModuloLowerCase = module.toLowerCase();
   const nomeModuloUpperCase = module.toUpperCase();
-  api.injectImports(pathFileStore, `import ${nomeModuloLowerCase}Module { ${nomeModuloUpperCase}_MODULE } from '@/store/modules/new-module/${nomeModuloLowerCase}Module';`)
+
+  api.injectImports(pathFileStore, `import ${nomeModuloLowerCase}Module, { ${nomeModuloUpperCase}_MODULE } from '@/store/modules/${nomeModuloLowerCase}/${nomeModuloLowerCase}Module';`);
 
 
   api.onCreateComplete(() => {
     // Renomear arquivos para name module escolhido no prompt 
-    const caminhaArquivosStoresRenomeados = 'src/store/modules/new-module';
+    const pathParaRenomearArquivos = 'src/store/modules/new-module';
     const files = [
       {
-        oldNameFile: `${caminhaArquivosStoresRenomeados}/newActions.ts`,
-        newNameFile: `${caminhaArquivosStoresRenomeados}/${nomeModuloLowerCase}Actions.ts`
+        nomeArquivoAtual: `${pathParaRenomearArquivos}/newActions.ts`,
+        novaNomeArquivo: `${pathParaRenomearArquivos}/${nomeModuloLowerCase}Actions.ts`
       },
       {
-        oldNameFile: `${caminhaArquivosStoresRenomeados}/newGetters.ts`,
-        newNameFile: `${caminhaArquivosStoresRenomeados}/${nomeModuloLowerCase}Getters.ts`
+        nomeArquivoAtual: `${pathParaRenomearArquivos}/newGetters.ts`,
+        novaNomeArquivo: `${pathParaRenomearArquivos}/${nomeModuloLowerCase}Getters.ts`
       },
       {
-        oldNameFile: `${caminhaArquivosStoresRenomeados}/newModule.ts`,
-        newNameFile: `${caminhaArquivosStoresRenomeados}/${nomeModuloLowerCase}Module.ts`
+        nomeArquivoAtual: `${pathParaRenomearArquivos}/newModule.ts`,
+        novaNomeArquivo: `${pathParaRenomearArquivos}/${nomeModuloLowerCase}Module.ts`
       },
       {
-        oldNameFile: `${caminhaArquivosStoresRenomeados}/newMutations.ts`,
-        newNameFile: `${caminhaArquivosStoresRenomeados}/${nomeModuloLowerCase}Mutations.ts`
+        nomeArquivoAtual: `${pathParaRenomearArquivos}/newMutations.ts`,
+        novaNomeArquivo: `${pathParaRenomearArquivos}/${nomeModuloLowerCase}Mutations.ts`
       },
     ];
 
     files.forEach((file) => {
-      console.log(`arquivo que será renomeado ${file.oldNameFile}`);
-      console.log(`novo arquivo renomeado ${file.newNameFile}`);
-      fs.rename(file.oldNameFile, file.newNameFile, function(err) {
+      fs.rename(file.nomeArquivoAtual, file.novaNomeArquivo, function(err) {
         if ( err ) console.log('ERROR: ' + err);
       });
     })
@@ -49,14 +49,13 @@ module.exports = function(api, options) {
     fs.readFile(pathFileStore, 'utf-8', (err, data) => {
       if (err) throw err;
 
-      var importNovoModulo = data.replace('/{(.*?)},/g', `[${nomeModuloUpperCase}_MODULE]: ${nomeModuloLowerCase}Module,`);
+      const importNovoModulo = data.replace('/{(.*?)},/g', `[${nomeModuloUpperCase}_MODULE]: ${nomeModuloLowerCase}Module,`);
       
       fs.writeFile(pathFileStore, importNovoModulo, 'utf-8', function(err) {
         if (err) throw err;
       })
     })
-   
-  })  
+  }) 
 }
 
 
