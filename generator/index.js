@@ -1,7 +1,8 @@
 const fs = require('fs-extra')
+const { EOL } = require('os')
+
 
 module.exports = function(api, options) {
-
   const { module, pathFileStore } = options;
 
 
@@ -15,6 +16,42 @@ module.exports = function(api, options) {
 
   api.injectImports(pathFileStore, `import ${nomeModuloLowerCase}Module, { ${nomeModuloUpperCase}_MODULE } from '@/store/modules/${nomeModuloLowerCase}/${nomeModuloLowerCase}Module';`);
 
+
+  api.afterInvoke(() => {
+    const fs = require('fs')
+    const contentMain = fs.readFileSync(pathFileStore, 'utf-8').toString();
+    const lines = contentMain.split(/\r?\n/g)
+
+    const renderIndex = lines.findIndex(line => line.match(/modules:/))
+    lines[renderIndex] += `\n  router,`
+  })
+
+
+  // Adicionar novo module store em arquivo store.ts
+  api.afterInvoke(() => {
+    const storeFile = api.resolve(pathFileStore);
+    const contentMain = fs.readFileSync(storeFile, { encoding: 'utf-8' })
+    const lines = contentMain.split(/\r?\n/g)
+ 
+    const moduleIndex = lines.findIndex(line => line.match(/modules\:/))
+    
+    let found = false;
+    let index = moduleIndex;
+ 
+    while(!found){
+      let modulo = lines[index+1];
+      if(modulo.indexOf('}') !== -1) {
+        var tabs = ((lines[index].match(new RegExp("\t", "g")) || []).length);
+        var spaces = ((lines[index].match(new RegExp("\s", "g")) || []).length);
+        found = true;
+      }
+      index++;
+    }
+    spaces = 4;
+    
+    lines.splice(index, 0, `${new Array(tabs).fill('\t').join('')}${new Array(spaces).fill(' ').join('')}[${nomeModuloUpperCase}_MODULE]: ${nomeModuloLowerCase}Module,`); 
+    fs.writeFileSync(api.resolve(storeFile), lines.join(EOL), { encoding: 'utf-8' })
+  })
 
   api.onCreateComplete(() => {
 
@@ -47,16 +84,6 @@ module.exports = function(api, options) {
         if ( err ) console.log('ERROR: ' + err);
       });
     })
-
-
-    // Adicionar referencia do novo modulo em store
-    // fs.readFile(pathFileStore, 'utf-8', (err, data) => {
-    //   if (err) throw err;
-
-    //   fs.writeFile(pathFileStore, importNovoModulo, 'utf-8', function(err) {
-    //     if (err) throw err;
-    //   })
-    // })
   }) 
 }
 
