@@ -2,7 +2,7 @@ import actions from './newActions';
 import getters from './newGetters';
 import mutations from './newMutations';
 
-export const '<%- module %>'_ACTIONS_MODULE = '\'<%- module %>\'_ACTIONS_MODULE';
+export const <%- module %>_MODULE = '<%- module %>_MODULE';
 
 const state = {
 };

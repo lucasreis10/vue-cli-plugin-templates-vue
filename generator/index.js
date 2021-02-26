@@ -4,7 +4,5 @@ module.exports = function(api, options) {
 
 
   api.render('./templates', { module });
-  api.render(`/templates/src/store/${module}`);
-
 
 }

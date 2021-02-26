@@ -1,4 +1,4 @@
-export const '<%- module %>'_ACTIONS_GETTERS = {
+export const <%- module %>_GETTERS = {
 };
 
 export default {
