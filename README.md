@@ -8,16 +8,16 @@ O objetivo deste projeto é eliminar a necessidade de criar arquivos "custosos" 
 
 ### Getting Started
 
-Este plugin foi construído utilizando [vue-cli](https://github.com/vuejs/vue-cli). O do `vue-clie@4` ou superior é obrigatório.
+Este plugin foi construído utilizando [vue-cli](https://github.com/vuejs/vue-cli). O uso do `@vue/cli@4` ou superior é obrigatório.
 
 
 ```bash
-# Instalando vue-cli 
-npm install -g vue-cli
+# Instalando @vue/cli
+npm install -g @vue/cli
+# OR
+yarn global add @vue/cli
 
-# TODO: Adicionar vue-cli-plugin-sesol2
-
-# Install dependencies and run your app
+# TODO: Adicionar vue-cli-plugin-sesol2 ao projeto
 
 ```
 
