@@ -15,31 +15,32 @@ module.exports = function(api, options) {
   // Adicionar import de novo store em aquivo store.ts
   api.injectImports(pathFileStore, `import ${nomeModuloLowerCase}Module, { ${nomeModuloUpperCase}_MODULE } from '@/store/modules/${nomeModuloLowerCase}/${nomeModuloLowerCase}Module';`);
 
+
   // Adicionar novo module store em arquivo store.ts
   api.afterInvoke(() => {
-    const spaces = 4;
-    const storeFile = api.resolve(pathFileStore);
-    const contentMain = fs.readFileSync(storeFile, { encoding: 'utf-8' })
-    const lines = contentMain.split(/\r?\n/g)
+    const espacos = 4;
+    const arquivoStore = api.resolve(pathFileStore);
+    const conteudoArquivo = fs.readFileSync(arquivoStore, { encoding: 'utf-8' })
+    const lines = conteudoArquivo.split(/\r?\n/g)
 
-    const moduleIndex = lines.findIndex(line => line.match(/modules\:/))
+    const modulesObj = lines.findIndex(line => line.match(/modules\:/))
 
     let found = false;
-    let index = moduleIndex;
+    let index = modulesObj;
 
     while(!found){
-      let modulo = lines[index+1];
-      if(modulo.indexOf('}') !== -1) {
+      let linhaObjModules = lines[index+1];
+      if(linhaObjModules.indexOf('}') !== -1) {
         var tabs = ((lines[index].match(new RegExp("\t", "g")) || []).length);
         found = true;
       }
       index++;
     }
 
-    const tabsAndSpaces = `${new Array(tabs).fill('\t').join('')}${new Array(spaces).fill(' ').join('')}`;
+    const EspacosETabs = `${new Array(tabs).fill('\t').join('')}${new Array(espacos).fill(' ').join('')}`;
 
-    lines.splice(index, 0, `${tabsAndSpaces}[${nomeModuloUpperCase}_MODULE]: ${nomeModuloLowerCase}Module,`);
-    fs.writeFileSync(api.resolve(storeFile), lines.join(EOL), { encoding: 'utf-8' })
+    lines.splice(index, 0, `${EspacosETabs}[${nomeModuloUpperCase}_MODULE]: ${nomeModuloLowerCase}Module,`);
+    fs.writeFileSync(api.resolve(arquivoStore), lines.join(EOL), { encoding: 'utf-8' })
   })
 
   api.onCreateComplete(() => {
