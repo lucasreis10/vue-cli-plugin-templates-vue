@@ -17,7 +17,9 @@ npm install -g @vue/cli
 # OR
 yarn global add @vue/cli
 
-# TODO: Adicionar vue-cli-plugin-sesol2 ao projeto
+# Adicionar vue-cli-plugin-sesol2 ao projeto
+
+vue add sesol2
 
 ```
 
