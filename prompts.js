@@ -28,7 +28,7 @@ module.exports = [
     },
     {
       when: res => res.tipoTarefa === 'tarefaStore',
-      name: 'pathFileStore',
+      name: 'caminhoEArquivoStore',
       type: 'input',
       message: 'Digite o caminho para o arquivo store.ts ou deixe o padrao',
       validade: input => !!input,
