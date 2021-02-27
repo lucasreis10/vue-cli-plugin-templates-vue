@@ -3,13 +3,13 @@ const { EOL } = require('os')
 
 
 module.exports = function(api, options) {
-  const { module, pathFileStore } = options;
+  const { nomeModulo, pathFileStore } = options;
 
-  const nomeModuloLowerCase = module.toLowerCase();
-  const nomeModuloUpperCase = module.toUpperCase();
+  const nomeModuloLowerCase = nomeModulo.toLowerCase();
+  const nomeModuloUpperCase = nomeModulo.toUpperCase();
 
   // Renderizar template store
-  api.render('./templates', { module, nomeModuloLowerCase });
+  api.render('./templates', { nomeModulo, nomeModuloLowerCase });
 
 
   // Adicionar import de novo store em aquivo store.ts

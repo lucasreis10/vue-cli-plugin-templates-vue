@@ -1,4 +1,4 @@
-export const <%- module %>_GETTERS = {
+export const <%- nomemodulo %>_GETTERS = {
 };
 
 export default {

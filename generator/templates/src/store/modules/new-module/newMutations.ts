@@ -1,4 +1,4 @@
-export const <%- module %>_MUTATIONS = {
+export const <%- nomeModulo %>_MUTATIONS = {
 };
 
 export default {
