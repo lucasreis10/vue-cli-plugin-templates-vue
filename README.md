@@ -3,7 +3,7 @@
 
 ## Overview
 
-O objetivo deste projeto é eliminar a necessidade de criar arquivos "custosos" como actions, getters, mutation e arquivos de teste, principalmente todo a sua estrutura de modulos e imports em arquivos agrupadores.
+O objetivo deste projeto é eliminar a necessidade de criar arquivos "custosos" como actions, getters, mutation, arquivos de teste e principalmente todas as estruturas de modulos e imports que estes arquivos estão envolvidos.
 
 
 ### Getting Started
