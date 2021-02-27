@@ -29,5 +29,5 @@ Após adicionar o `vue-cli-plugin-sesol2` ao projeto o seguinte comando pode ser
 cd my-project
 
 
-vue invoke vue-cli-plugin-store
+vue invoke vue-cli-plugin-sesol2
 ```
