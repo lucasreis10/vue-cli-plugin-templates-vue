@@ -16,14 +16,5 @@ module.exports = pkg => {
     },
   ]
 
-  // add dynamically prompt
-  if ('@vue/cli-plugin-eslint' in (pkg.devDependencies || {})) {
-    prompts.push({
-      type: 'confirm',
-      name: 'useESLintPluginVueI18n',
-      message: 'Use ESLint plugin for Vue I18n ?'
-    })
-  }
-
   return prompts
 }
