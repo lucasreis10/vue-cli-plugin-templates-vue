@@ -11,7 +11,7 @@ module.exports = [
           short: 'Module store'
         },
         {
-          name: 'Criar arquivos de teste',
+          name: 'Criar teste para module de store',
           value: 'tarefaTesteStore',
           short: 'Arquivo de teste'
         },
