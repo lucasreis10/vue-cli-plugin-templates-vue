@@ -1,4 +1,4 @@
-# Vue CLI Plugin Sesol 2
+# Vue CLI Plugin Scaffold Vue
 
 
 ## Overview
@@ -17,19 +17,19 @@ npm install -g @vue/cli
 # OR
 yarn global add @vue/cli
 
-# Adicionar vue-cli-plugin-sesol2 ao projeto
+# Adicionar vue-cli-plugin-scaffold-vue ao projeto
 
-vue add sesol2
+vue add scaffold-vue
 
 ```
 
 ### Exemplo de como usar plugin
 
-Após adicionar o `vue-cli-plugin-sesol2` ao projeto o seguinte comando pode ser executado:
+Após adicionar o `vue-cli-plugin-scaffold-vue` ao projeto o seguinte comando pode ser executado:
 
 ```bash
 cd my-project
 
 
-vue invoke vue-cli-plugin-sesol2
+vue invoke vue-cli-plugin-scaffold-vue
 ```
