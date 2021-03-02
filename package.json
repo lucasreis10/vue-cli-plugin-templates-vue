@@ -5,8 +5,8 @@
   "main": "index.js",
   "author": "Lucas Reis <lucaschristian10@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/lucasreis10/vue-cli-plugin-scaffold-vue",
-  "funding": "https://github.com/lucasreis10/vue-cli-plugin-scaffold-vue",
+  "homepage": "https://github.com/lucasreis10/vue-cli-plugin-templates-vue",
+  "funding": "https://github.com/lucasreis10/vue-cli-plugin-templates-vue",
   "dependencies": {
     "fs-extra": "^9.1.0",
     "yaml-front-matter": "^4.1.1"
