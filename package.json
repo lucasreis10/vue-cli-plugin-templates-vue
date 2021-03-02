@@ -1,6 +1,6 @@
 {
-  "name": "vue-cli-plugin-sesol2",
-  "version": "1.0.0",
+  "name": "vue-cli-plugin-scaffold-vue",
+  "version": "1.3.0",
   "description": "",
   "main": "index.js",
   "author": "Lucas Reis <lucaschristian10@gmail.com>",
