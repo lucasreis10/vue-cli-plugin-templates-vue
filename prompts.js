@@ -39,7 +39,7 @@ module.exports = () => {
     {
       when: res => res.tipoTarefa === 'tarefaStore',
       name: 'caminhoEArquivoStore',
-      type: 'list',
+      type: 'input',
       message: 'Digite o caminho para o arquivo store.ts ou deixe o padrao',
       validade: input => !!input,
       default: 'src/store/store.ts'
@@ -59,6 +59,7 @@ module.exports = () => {
       name: 'nomeNovoDiretorio',
       type: 'input',
       message: 'Digite o nome do novo diretorio',
+      validade: input => !!input,
       default: 'novo'
     },
     {
@@ -66,6 +67,7 @@ module.exports = () => {
       name: 'nomeComponente',
       type: 'input',
       message: 'Digite o nome do componente',
+      validade: input => !!input,
       default: 'novoComponente'
     },
   ];
@@ -91,8 +93,6 @@ module.exports = () => {
 
     return diretorios;
   } 
-
-
 
 
 
