@@ -1,11 +1,11 @@
 const fs = require('fs-extra');
 
-module.exports = (api, nomeTeste) => {
+module.exports = (api, nomeModulo) => {
 
-    const nomeTesteLowerCase = nomeTeste.toLowerCase();
+    const nomeTesteLowerCase = nomeModulo.toLowerCase();
 
     // Renderizar template store
-    api.render('./templates-tests-store', { nomeTeste });
+    api.render('./templates-tests-store', { nomeTeste: nomeModulo });
 
     api.onCreateComplete(() => {
 

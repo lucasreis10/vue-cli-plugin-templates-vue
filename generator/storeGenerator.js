@@ -7,7 +7,7 @@ module.exports = (api, nomeModulo, caminhoEArquivoStore) => {
     const nomeModuloUpperCase = nomeModulo.toUpperCase();
 
     // Renderizar template store
-    api.render('./templates', { nomeModulo, nomeModuloLowerCase });
+    api.render('./templates-store', { nomeModulo, nomeModuloLowerCase });
 
 
     // Adicionar import de novo store em aquivo store.ts

@@ -12,8 +12,8 @@ module.exports = function(api, options) {
   
   if(tipoTarefa === 'tarefaStore') {
     storeGenerator(api, nomeModulo, caminhoEArquivoStore);
+    testsStoreGenerator(api, nomeModulo);
   } else {
-    testsStoreGenerator(api, nomeTeste);
   }
 }
 
