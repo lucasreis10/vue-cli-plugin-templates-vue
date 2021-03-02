@@ -1,5 +1,6 @@
 const storeGenerator = require('./storeGenerator');
 const testsStoreGenerator = require('./testsStoreGenerator');
+const componenteGenerator = require('./componentGenerator');
 
 module.exports = function(api, options) {
 
@@ -7,13 +8,16 @@ module.exports = function(api, options) {
       nomeModulo, 
       caminhoEArquivoStore, 
       tipoTarefa,
-      nomeTeste 
+      nomeNovoDiretorio,
+      diretorioComponente,
+      nomeComponente
     } = options;
   
   if(tipoTarefa === 'tarefaStore') {
     storeGenerator(api, nomeModulo, caminhoEArquivoStore);
     testsStoreGenerator(api, nomeModulo);
-  } else {
+  } else if(tipoTarefa === 'tarefaComponente') {
+    componenteGenerator(api, nomeNovoDiretorio, diretorioComponente, nomeComponente);
   }
 }
 

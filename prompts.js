@@ -1,19 +1,27 @@
-module.exports = [
+const { statSync, readdirSync } = require('fs-extra');
+
+module.exports = () => {
+
+  const prompts = [
     {
       name: 'tipoTarefa',
       type: 'list',
       message: 'Escolha o tipo de terefa',
-      default: '^11.0.0',
       choices: [
         {
-          name: 'Criar module store Vuex',
+          name: 'Modulo Store',
+          short: 'Store',
           value: 'tarefaStore',
-          short: 'Module store'
         },
         {
-          name: 'Criar teste para module de store',
-          value: 'tarefaTesteStore',
-          short: 'Arquivo de teste'
+          name: 'Component',
+          short: 'Component',
+          value: 'tarefaComponente',
+        },
+        {
+          name: 'View',
+          short: 'view',
+          value: 'tarefaView',
         },
       ],
       default: 'tarefaStore'
@@ -31,19 +39,64 @@ module.exports = [
     {
       when: res => res.tipoTarefa === 'tarefaStore',
       name: 'caminhoEArquivoStore',
-      type: 'input',
+      type: 'list',
       message: 'Digite o caminho para o arquivo store.ts ou deixe o padrao',
       validade: input => !!input,
       default: 'src/store/store.ts'
     },
 
-    // Tarefa criar teste para store
+    // Tarefa criar component
     {
-      when: res => res.tipoTarefa === 'tarefaTesteStore',
-      name: 'nomeTeste',
-      type: 'input',
-      message: 'Digite o nome do teste store',
-      validade: input => !!input,
-      default: 'NAME_TESTE'
+      when: res => res.tipoTarefa === 'tarefaComponente',
+      name: 'diretorioComponente',
+      type: 'list',
+      message: 'Escolha a pasta onde o Componete serah criado',
+      choices: lerPastasComponetes,
+      default: 'novoDiretorio'
     },
-]
+    {
+      when: res => res.diretorioComponente === 'novoDiretorio',
+      name: 'nomeNovoDiretorio',
+      type: 'input',
+      message: 'Digite o nome do novo diretorio',
+      default: 'novo'
+    },
+    {
+      when: res => res.nomeNovoDiretorio || res.diretorioComponente,
+      name: 'nomeComponente',
+      type: 'input',
+      message: 'Digite o nome do componente',
+      default: 'novoComponente'
+    },
+  ];
+
+
+  function lerPastasComponetes() {
+    const path = 'src/components/modules';
+    const diretorios = readdirSync(path)
+    .filter(file => statSync(`${path}/${file}`).isDirectory())
+    .map(nomeDiretorio => {
+      return {
+        name:  nomeDiretorio,
+        short: nomeDiretorio,
+        value: nomeDiretorio
+      }
+    });
+    
+    diretorios.unshift({
+      name: 'Novo Diretorio',
+      short: 'Novo Diretorio',
+      value: 'novoDiretorio'
+    });
+
+    return diretorios;
+  } 
+
+
+
+
+
+  return prompts;
+} 
+
+
