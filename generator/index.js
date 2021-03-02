@@ -4,26 +4,21 @@ const componenteGenerator = require('./componentGenerator');
 
 module.exports = function(api, options) {
 
-  const { 
-      nomeModulo, 
-      caminhoEArquivoStore, 
-      tipoTarefa,
-      nomeNovoDiretorio,
-      diretorioComponente,
-      nomeComponente
-    } = options;
+  const tarefas = {tarefaStore, tarefaComponente};
+
+  const { tipoTarefa } = options;
   
-  if(tipoTarefa === 'tarefaStore') {
-    storeGenerator(api, nomeModulo, caminhoEArquivoStore);
-    testsStoreGenerator(api, nomeModulo);
-  } else if(tipoTarefa === 'tarefaComponente') {
-    componenteGenerator(api, nomeNovoDiretorio, diretorioComponente, nomeComponente);
-  }
+  tarefas[tipoTarefa](api, options);
 }
 
+function tarefaStore(api, { nomeModulo, caminhoEArquivoStore }) {
+  storeGenerator(api, nomeModulo, caminhoEArquivoStore);
+  testsStoreGenerator(api, nomeModulo);
+}
 
-
-
+function tarefaComponente(api, { nomeNovoDiretorio, diretorioComponente, nomeComponente }) {
+  componenteGenerator(api, nomeNovoDiretorio, diretorioComponente, nomeComponente);
+}
 
 
 
