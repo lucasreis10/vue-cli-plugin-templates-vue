@@ -1,10 +1,12 @@
 const storeGenerator = require('./storeGenerator');
 const testsStoreGenerator = require('./testsStoreGenerator');
 const componenteGenerator = require('./componentGenerator');
+const viewGenerator = require('./viewGenerator');
+
 
 module.exports = function(api, options) {
 
-  const tarefas = {tarefaStore, tarefaComponente};
+  const tarefas = {tarefaStore, tarefaComponente, tarefaView};
 
   const { tipoTarefa } = options;
   
@@ -20,5 +22,6 @@ function tarefaComponente(api, { nomeNovoDiretorio, diretorioComponente, nomeCom
   componenteGenerator(api, nomeNovoDiretorio, diretorioComponente, nomeComponente);
 }
 
-
-
+function tarefaView(api, { nomeView }) {
+  viewGenerator(api, nomeView);
+}

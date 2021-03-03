@@ -70,6 +70,16 @@ module.exports = () => {
       validade: input => !!input,
       default: 'novoComponente'
     },
+
+    // tarefa criar view
+    {
+      when: res => res.tipoTarefa === 'tarefaView',
+      name: 'nomeView',
+      type: 'input',
+      message: 'Digite o nome da view',
+      validade: input => !!input,
+      default: 'ExemploView'
+    },
   ];
 
 

@@ -4,12 +4,16 @@
 
 <script>
 
-export default {
+export default Vue.extend({
   name: '<%- nomeComponente %>',
   data() {
     return {
     };
   },
  
-};
+});
+
 </script>
+
+<style scoped>
+</style>
