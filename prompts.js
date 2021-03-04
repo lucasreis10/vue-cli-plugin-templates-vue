@@ -71,7 +71,7 @@ module.exports = () => {
       default: 'novoComponente'
     },
 
-    // tarefa criar view
+    // Tarefa criar view
     {
       when: res => res.tipoTarefa === 'tarefaView',
       name: 'nomeView',
